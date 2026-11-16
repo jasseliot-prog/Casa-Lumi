@@ -4,6 +4,59 @@
 body.light{--bg:#eee8f5;--panel:#fffaff;--panel2:#f1e9fa;--text:#30253a;--muted:#74677e;--line:#d9cbe5;background:radial-gradient(ellipse at 80% 0%,#e1d1f2,transparent 40%),var(--bg)}body.light .topbar,body.light .tabs{background:#f7f1f9ed}body.light .panel input,body.light .panel select,body.light .panel textarea{background:#fffaff;color:#30253a}
 @media(max-width:720px){.tabs{top:68px}.tab{padding:9px 10px}.tab span{font-size:11px}.hero{grid-template-columns:1fr;padding-top:12px}.hero-copy{text-align:center}.hero-copy>p:not(.eyebrow){margin-inline:auto}.actions{justify-content:center}.character-wrap{min-height:280px}.quick-grid{grid-template-columns:repeat(2,1fr)}.room-layout{grid-template-columns:1fr}.room-list{grid-template-columns:repeat(2,1fr)}.two-col,.lulu-layout,.calendar-bottom,.music-grid{grid-template-columns:1fr}.calendar-grid{gap:3px}.day-cell{min-height:48px;padding:5px;font-size:12px}.day-name{font-size:9px}.note-form{display:block}.note-form button{width:100%}.section-head{align-items:start;flex-direction:column}.top-actions #clock{display:none}}
 
+
+/* PERSONAJE LUMI 2D */
+
+.lumi-personaje {
+  width: min(100%, 340px);
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lumi-imagen {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 22px;
+  filter: drop-shadow(
+    0 0 18px rgba(177, 126, 255, 0.35)
+  );
+}
+
+/* VARIANTES DE VESTUARIO */
+
+.lumi[class*="look-summer"] .outfit {
+  background: linear-gradient(100deg,#46335c,#a78acb 65%,#46335c);
+  border-bottom-color: #e5d3fa;
+}
+
+.lumi[class*="look-autumn"] .outfit {
+  background: linear-gradient(100deg,#211822,#76516c 65%,#211822);
+  border-bottom-color: #c99c83;
+}
+
+.lumi[class*="look-winter"] .outfit {
+  background: linear-gradient(100deg,#11131e,#46506d 65%,#11131e);
+  border-bottom-color: #c5d1e7;
+}
+
+.lumi[class*="look-spring"] .outfit {
+  background: linear-gradient(100deg,#261a32,#866b9f 65%,#261a32);
+  border-bottom-color: #d6b4d6;
+}
+
+.lumi[class*="look-party"] .outfit {
+  background: linear-gradient(100deg,#09080e,#5d3e70 65%,#09080e);
+  border-bottom-color: #e4d0ff;
+}
+
+.lumi[class*="look-sleep"] .outfit {
+  background: linear-gradient(100deg,#28203a,#51466a 65%,#28203a);
+  border-bottom-color: #c8b6e9;
+}
 /* Variantes visuales del vestuario: el mismo personaje conserva su identidad. */
 .lumi[class*="look-summer"] .outfit{background:linear-gradient(100deg,#46335c,#a78acb 65%,#46335c);border-bottom-color:#e5d3fa}
 .lumi[class*="look-autumn"] .outfit{background:linear-gradient(100deg,#211822,#76516c 65%,#211822);border-bottom-color:#c99c83}
