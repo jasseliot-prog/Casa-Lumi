@@ -1,0 +1,12 @@
+{
+  "name": "Lumi & Lulú",
+  "short_name": "Casa Lumi",
+  "description": "Nuestro pequeño refugio de Lumi y Lulú",
+  "lang": "es-CL",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#160f20",
+  "theme_color": "#170f24"
+}
