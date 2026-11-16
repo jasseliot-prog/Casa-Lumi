@@ -1,0 +1,42 @@
+CONTEXTO COMPLETO — CASA-LUMI
+
+Estamos construyendo Casa-Lumi, una PWA instalable en Android desde GitHub Pages. El usuario quiere que Lumi exista como personaje desde el primer inicio, no una casa vacía ni un simple chatbot.
+
+OBJETIVO VISUAL
+- Estética dark-kawaii / referencia estética “Noni”, pero personaje original, no copia de un personaje existente.
+- Paleta negro, lavanda, violeta, plata, estrellas y lunas.
+- Lumi: cabello oscuro, ojos violetas, expresión amable; mantener identidad y proporciones en todas las habitaciones. Closet cambia la ropa aplicada al mismo personaje.
+- Departamento interior con dormitorio, living, cocina, comedor, escritorio, closet y rincón de Lulú.
+- Ciclo día/noche, más ambientes, mobiliario y eventos son ampliaciones futuras.
+
+FUNCIONES ACORDADAS
+1. Lumi: personaje visible desde el inicio, estados y animaciones (respirar/parpadear, caminar, sentarse, leer, descansar, trabajar, cocinar, escuchar música, saludar); futuras expresiones y animaciones más ricas.
+2. Closet: ropa cotidiana, pijamas, vestidos, faldas, pantalones, tops, sweaters, chaquetas/abrigos, zapatos y accesorios; cuatro estaciones del hemisferio sur: verano dic-feb, otoño mar-may, invierno jun-ago, primavera sep-nov; atuendos para Navidad, Año Nuevo, San Valentín, Fiestas Patrias, Halloween y cumpleaños.
+3. Lulú: suculenta pequeña, macetero negro, estrellita plateada, carita :3; regar, luz, compañía, estadísticas, crecimiento/evolución e historial; mecánica amable sin pérdida permanente. Distinguir el juego virtual de cuidado real.
+4. Calendario: mensual/semanal/diario en futuras versiones; crear/editar/borrar/completar eventos, fecha/hora/categoría/notas/lugar, recurrencias, próximos eventos, búsqueda, recordatorios, exportar/importar, zona horaria Chile. Push real necesita backend.
+5. Asistente: IA real, chat, notas, tareas, organización y recordatorios autorizados. Requiere backend seguro. Nunca exponer API keys en frontend/GitHub.
+6. Música: acceso Spotify y YouTube; OAuth oficial para controles Spotify avanzados; YouTube embed para contenido permitido. Nunca pedir contraseñas ni guardar credenciales en la app.
+7. PWA instalable, datos locales, respaldo, posible sincronización segura futura, accesibilidad y control de movimiento.
+
+PAQUETE ACTUAL
+Este proyecto contiene un MVP en HTML/CSS/JS:
+- index.html, styles.css, app.js, manifest.webmanifest, sw.js, assets/icon.svg.
+- Lumi CSS 2D, selector de siete habitaciones, estados de acción sencillos.
+- Vestuario básico por estación/ocasión.
+- Lulú con cuidados e historial local.
+- Calendario mensual con crear/borrar eventos.
+- Notas, respaldo JSON.
+- Enlaces Spotify y reproductor YouTube embed.
+- PWA/offline básico.
+No contiene IA real, notificaciones push, Spotify OAuth, sincronización cloud ni animación avanzada. No prometer que esas partes funcionan hasta implementarlas y probarlas.
+
+INSTRUCCIONES PARA CONTINUAR
+- Primero inspecciona y prueba el proyecto completo.
+- No reemplaces ni reinicies el proyecto. Conserva todos los módulos que ya funcionan.
+- Corrige errores antes de añadir funciones.
+- Trabaja en módulos pequeños, manteniendo compatibilidad móvil y los datos guardados.
+- Antes de cada ampliación, indica archivos que tocarás y haz copia/backup.
+- Añade primero ciclo día/noche y mejor interacción/animaciones de Lumi; luego edición y recurrencia del calendario; luego eventos/ropa/objetos; luego backend de IA y notificaciones; por último Spotify OAuth/sincronización.
+- Cualquier integración externa debe usar OAuth/API oficial y backend HTTPS. No poner secretos en frontend.
+- Entrega siempre los archivos completos actualizados y un registro claro de cambios, más pasos de prueba en Android.
+- Nunca declares una función “terminada” sin explicar y comprobar cómo se prueba.

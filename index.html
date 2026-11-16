@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#17121f"><meta name="description" content="Casa-Lumi: el hogar digital de Lumi y Lulú">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="assets/icon.svg">
+<link rel="stylesheet" href="styles.css"><title>Casa-Lumi</title>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="moon">☾</span><div><b>Casa-Lumi</b><small>un pequeño mundo digital</small></div></div>
+  <div class="top-actions"><span id="clock"></span><button class="iconbtn" id="themeBtn" title="Cambiar ambiente">☼</button></div>
+</header>
+<nav class="tabs" aria-label="Secciones">
+<button class="tab active" data-page="home">⌂ <span>Inicio</span></button>
+<button class="tab" data-page="rooms">▦ <span>Hogar</span></button>
+<button class="tab" data-page="closet">♧ <span>Closet</span></button>
+<button class="tab" data-page="lulu">✿ <span>Lulú</span></button>
+<button class="tab" data-page="calendar">▣ <span>Calendario</span></button>
+<button class="tab" data-page="music">♫ <span>Música</span></button>
+<button class="tab" data-page="assistant">✧ <span>Asistente</span></button>
+</nav>
+<main>
+<section class="page active" id="page-home">
+  <div class="hero">
+    <div class="hero-copy"><p class="eyebrow">BIENVENIDA A CASA</p><h1>Hola, soy <em>Lumi</em>.</h1>
+      <p>Este es mi pequeño hogar. Puedes recorrerlo, cambiar mi ropa, cuidar a Lulú y organizar tus días.</p>
+      <div class="actions"><button class="primary" data-go="rooms">Conocer mi departamento</button><button class="secondary" data-go="calendar">Ver calendario</button></div>
+    </div>
+    <div class="character-wrap"><div class="spark s1">✦</div><div class="spark s2">✧</div><div id="lumi" class="lumi idle" aria-label="Personaje Lumi">
+      <div class="hair back"></div><div class="body"><div class="neck"></div><div class="face"><span class="bang"></span><i class="eye left"></i><i class="eye right"></i><span class="blush l"></span><span class="blush r"></span><span class="mouth"></span></div><div class="hair front"></div></div>
+      <div class="outfit"><span class="collar">✦</span><span class="bow">✧</span></div><div class="legs"><i></i><i></i></div><div class="shoes"><i></i><i></i></div>
+    </div><div class="nameplate">Lumi · tu anfitriona</div></div>
+  </div>
+  <div class="section-head"><div><p class="eyebrow">TU ESPACIO</p><h2>¿Qué hacemos hoy?</h2></div><span class="soft-pill" id="dateLabel"></span></div>
+  <div class="quick-grid">
+    <button class="quick-card" data-go="rooms"><span>🏠</span><b>Explorar el hogar</b><small>Mis rincones favoritos</small></button>
+    <button class="quick-card" data-go="closet"><span>🧥</span><b>Elegir vestuario</b><small>Hoy puedo cambiarme</small></button>
+    <button class="quick-card" data-go="lulu"><span>🌱</span><b>Cuidar a Lulú</b><small>Agua, luz y cariño</small></button>
+    <button class="quick-card" data-go="calendar"><span>📅</span><b>Organizar el día</b><small>Fechas y pendientes</small></button>
+  </div>
+  <div class="quote-card"><span>☾</span><div><b>Un hogar que crece contigo</b><p>Casa-Lumi está preparada para ampliarse por módulos, sin tener que empezar de cero.</p></div></div>
+</section>
+
+<section class="page" id="page-rooms">
+  <div class="section-head"><div><p class="eyebrow">RECORRIDO</p><h1>Mi departamento</h1><p class="muted">Elige una habitación para visitarla conmigo.</p></div></div>
+  <div class="room-layout"><div class="room-list" id="roomList"></div><article class="room-detail" id="roomDetail"><div class="room-art bedroom"><span>☾</span><span>✦</span><span>✧</span></div><h2>Mi dormitorio</h2><p>Un rincón tranquilo para descansar.</p></article></div>
+  <div class="character-actions"><button class="secondary" data-action="walk">Caminar</button><button class="secondary" data-action="sit">Sentarme</button><button class="secondary" data-action="read">Leer</button><button class="secondary" data-action="rest">Descansar</button><span id="actionStatus" class="muted">Lumi está en casa.</span></div>
+</section>
+
+<section class="page" id="page-closet">
+  <p class="eyebrow">ARMARIO DE LUMI</p><h1>Mi closet</h1><p class="muted">Selecciona un conjunto. El personaje conservará su identidad y cambiará su ropa.</p>
+  <div class="two-col"><div class="panel"><label for="season">Temporada / ocasión</label><select id="season"><option value="everyday">Cotidiano</option><option value="summer">Verano · dic-feb</option><option value="autumn">Otoño · mar-may</option><option value="winter">Invierno · jun-ago</option><option value="spring">Primavera · sep-nov</option><option value="party">Celebración</option><option value="sleep">Pijama</option></select><div id="outfitList" class="outfit-list"></div></div>
+  <div class="panel closet-preview"><div class="character-wrap small"><div class="lumi idle" id="lumiPreview"><div class="hair back"></div><div class="body"><div class="neck"></div><div class="face"><span class="bang"></span><i class="eye left"></i><i class="eye right"></i><span class="blush l"></span><span class="blush r"></span><span class="mouth"></span></div><div class="hair front"></div></div><div class="outfit"><span class="collar">✦</span><span class="bow">✧</span></div><div class="legs"><i></i><i></i></div><div class="shoes"><i></i><i></i></div></div></div><h3 id="outfitName">Conjunto habitual</h3><p id="outfitDescription" class="muted">Negro y lavanda, con detalles plateados.</p></div></div>
+</section>
+
+<section class="page" id="page-lulu">
+  <p class="eyebrow">RINCÓN VERDE</p><h1>Lulú 🌱</h1><p class="muted">Nuestra suculenta virtual. Sus cuidados se guardan en este dispositivo.</p>
+  <div class="lulu-layout"><div class="panel plant-panel"><div class="plant"><div class="leaf l1"></div><div class="leaf l2"></div><div class="leaf l3"></div><div class="leaf l4"></div><div class="plant-face">:3</div><div class="pot"><span>✦</span></div></div><h2 id="luluMood">Lulú está contenta</h2><p id="luluMessage" class="muted">Gracias por venir a visitarme.</p><div class="care-stats"><div><label>Agua</label><div class="meter"><i id="waterBar"></i></div><small id="waterText"></small></div><div><label>Luz</label><div class="meter"><i id="lightBar"></i></div><small id="lightText"></small></div><div><label>Ánimo</label><div class="meter"><i id="loveBar"></i></div><small id="loveText"></small></div></div><div class="actions centered"><button class="primary" id="waterBtn">💧 Regar</button><button class="secondary" id="lightBtn">☀ Dar luz</button><button class="secondary" id="talkPlantBtn">♡ Acompañar</button></div></div>
+  <div class="panel"><h3>Cuidados recientes</h3><ul id="careHistory" class="history"></ul><p class="tiny muted">Es un juego de cuidado virtual; no sustituye las necesidades de una planta real. Los indicadores son suaves y no hay pérdida permanente de Lulú.</p></div></div>
+</section>
+
+<section class="page" id="page-calendar">
+  <p class="eyebrow">ORGANIZACIÓN</p><h1>Calendario de Lumi</h1><p class="muted">Anota acontecimientos, tareas y recordatorios importantes.</p>
+  <div class="calendar-toolbar"><button class="secondary" id="prevMonth">‹</button><h2 id="monthTitle"></h2><button class="secondary" id="nextMonth">›</button><button class="secondary" id="todayBtn">Hoy</button></div>
+  <div class="calendar-grid" id="calendarGrid"></div>
+  <div class="calendar-bottom"><div class="panel"><h3 id="selectedDateTitle">Eventos del día</h3><div id="eventList"></div></div>
+  <form class="panel event-form" id="eventForm"><h3>Agregar evento</h3><label>Título<input id="eventTitle" required maxlength="90" placeholder="Ej. Cumpleaños"></label><label>Fecha<input id="eventDate" type="date" required></label><label>Hora (opcional)<input id="eventTime" type="time"></label><label>Categoría<select id="eventCategory"><option>Personal</option><option>Familia</option><option>Trabajo</option><option>Celebración</option><option>Recordatorio</option></select></label><label>Notas<textarea id="eventNotes" rows="2" placeholder="Detalles importantes..."></textarea></label><button class="primary" type="submit">Guardar evento</button></form></div>
+  <div class="actions"><button class="secondary" id="exportBtn">Exportar respaldo</button><label class="secondary file-label">Importar respaldo<input type="file" id="importFile" accept="application/json"></label></div>
+</section>
+
+<section class="page" id="page-music">
+  <p class="eyebrow">AMBIENTE MUSICAL</p><h1>Música en casa</h1><p class="muted">Accesos a tus plataformas favoritas. La reproducción depende de las funciones y permisos de cada servicio.</p>
+  <div class="music-grid"><div class="panel music-card"><div class="music-icon">♫</div><h2>Spotify</h2><p>Abre Spotify para elegir tus canciones o listas. La integración oficial avanzada requiere autorización de tu cuenta y configuración adicional.</p><a class="primary linkbtn" href="https://open.spotify.com/" target="_blank" rel="noopener">Abrir Spotify</a><label>Enlace a una lista o canción<input id="spotifyUrl" type="url" placeholder="https://open.spotify.com/playlist/..."></label><button class="secondary" id="spotifySave">Guardar enlace</button><div id="spotifySaved" class="saved-link"></div></div>
+  <div class="panel music-card"><div class="music-icon">▶</div><h2>YouTube</h2><p>Pega un enlace de video o lista para abrirlo aquí mediante el reproductor integrado cuando el contenido permita inserción.</p><label>Enlace de YouTube<input id="youtubeUrl" type="url" placeholder="https://www.youtube.com/watch?v=..."></label><button class="secondary" id="youtubeLoad">Cargar reproductor</button><div id="youtubePlayer" class="youtube-player"><p class="muted">Tu reproductor aparecerá aquí.</p></div></div></div>
+  <p class="tiny muted">La aplicación no solicita ni guarda contraseñas. Nunca compartas credenciales en esta página.</p>
+</section>
+
+<section class="page" id="page-assistant">
+  <p class="eyebrow">ESCRITORIO DE LUMI</p><h1>Mi espacio de asistente</h1>
+  <div class="panel"><div class="assistant-intro"><div class="mini-avatar">☾</div><div><h2>Estoy aquí para organizar contigo.</h2><p class="muted">En esta primera versión puedo guardar notas y tareas localmente. Para conversar con una IA real se necesita conectar un backend seguro.</p></div></div>
+  <form id="noteForm" class="note-form"><label>Nueva nota o tarea<textarea id="noteText" rows="3" placeholder="Escribe algo que quieras guardar..."></textarea></label><button class="primary">Guardar nota</button></form><h3>Mis notas</h3><ul id="notesList" class="history"></ul></div>
+  <div class="panel warning"><b>Conexión de IA pendiente</b><p>El proyecto incluye una guía para conectar un servicio de IA mediante un servidor seguro. No pongas claves secretas en GitHub, HTML o JavaScript público.</p></div>
+</section>
+</main>
+<footer><span>☾ Casa-Lumi</span><span>Hecho para crecer por etapas · <span id="year"></span></span></footer>
+<script src="app.js"></script>
+</body></html>
