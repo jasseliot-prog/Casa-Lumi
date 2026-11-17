@@ -1,0 +1,16 @@
+CASA-LUMI: LUMI ARTICULADA (PROTOTIPO)
+
+Archivos: lumi-prueba.html, lumi-movimiento.css, lumi-movimiento.js.
+
+1. Subir estos tres archivos a la raíz del repositorio Casa-Lumi, sin reemplazar los archivos existentes.
+2. Visitar https://jasseliot-prog.github.io/Casa-Lumi/lumi-prueba.html
+3. Probar caminar, saludar, parpadear, sentarse y dormir.
+
+PARA INTEGRAR EN INDEX.HTML (después de probar):
+En <head>: <link rel="stylesheet" href="lumi-movimiento.css">
+En el lugar donde quieres a Lumi: <div data-lumi-movimiento></div>
+Antes de </body>: <script src="lumi-movimiento.js"></script>
+
+No insertes el nuevo personaje encima del anterior: primero identifica el contenedor de la figura antigua y reemplaza solo ese contenedor.
+
+LIMITACIONES: El personaje es SVG vectorial aproximado y NO reproduce con exactitud la ilustración anime. Las articulaciones son independientes, pero los gestos de sentarse y dormir son estilizados. No tiene ropa intercambiable todavía. La imagen original requerirá recorte/redibujo en piezas para conservar su acabado exacto.
