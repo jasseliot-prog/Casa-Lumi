@@ -1,0 +1,10 @@
+CASA-LUMI · VESTIDOR MÁGICO 2D
+
+1. Descomprime este ZIP.
+2. Sube vestidor.html, vestidor.css, vestidor.js y la carpeta assets/ a la raíz del repositorio Casa-Lumi en la rama main.
+3. Abre https://jasseliot-prog.github.io/Casa-Lumi/vestidor.html
+4. Para entrar desde el sitio principal, añade un enlace: <a href="vestidor.html">Abrir vestidor mágico</a>
+
+IMPORTANTE: Las 10 imágenes WebP son RECORTES de la ilustración de referencia que compartiste, no personajes con fondo transparente ni piezas animables. Así puedes probar los 10 botones desde ya. Cuando existan las ilustraciones individuales transparentes, reemplaza los archivos por las nuevas imágenes manteniendo sus nombres, o modifica las extensiones en vestidor.js.
+
+No reemplaces index.html, styles.css ni app.js existentes. Este vestidor funciona como página independiente para evitar romper la app actual.
