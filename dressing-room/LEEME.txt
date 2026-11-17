@@ -1,0 +1,13 @@
+CASA-LUMI — VESTIDOR
+
+Sube dressingroom.html y dressingroom.css a la misma carpeta donde ya está dressingroom.js.
+
+Las imágenes .webp también deben estar en esa carpeta para que las rutas simples funcionen, o deben corregirse las rutas en el JavaScript.
+
+IMPORTANTE: No se ha visto el contenido de tu dressingroom.js. Estos archivos HTML/CSS usan identificadores compatibles con el vestidor anterior (lumi-imagen, lumi-titulo, lumi-descripcion, lumi-opciones), pero puede ser necesario adaptar el JavaScript.
+
+Si la carpeta se llama dressing-room, la dirección sería:
+https://jasseliot-prog.github.io/Casa-Lumi/dressing-room/dressingroom.html
+
+Si la carpeta se llama dressingroom, la dirección sería:
+https://jasseliot-prog.github.io/Casa-Lumi/dressingroom/dressingroom.html

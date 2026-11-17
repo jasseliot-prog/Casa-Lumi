@@ -1,0 +1,13 @@
+:root{color-scheme:dark;--bg:#100d16;--panel:#241d30;--text:#f5efff;--accent:#b99be8;--line:#56416c}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% 0%,#38254c,transparent 60%),var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif}
+.vestidor{max-width:760px;margin:auto;padding:24px 16px 48px;text-align:center}
+.volver{display:block;width:max-content;color:var(--accent);text-decoration:none;margin-bottom:20px}
+h1{font-size:clamp(1.65rem,5vw,2.5rem);margin:0 0 10px}h2{margin:18px 0 6px}p{line-height:1.5}
+.escenario{position:relative;display:flex;align-items:center;justify-content:center;margin:22px auto 0;min-height:310px;max-width:450px;border:1px solid var(--line);border-radius:24px;background:radial-gradient(circle at center,#55406d,#21192d 70%);overflow:hidden;box-shadow:0 18px 45px #0005}
+.escenario img{display:block;max-width:100%;width:auto;height:auto;max-height:420px;object-fit:contain;position:relative;z-index:1}
+.destellos{position:absolute;top:15px;right:20px;color:#e4cbff;letter-spacing:10px;pointer-events:none}
+.opciones{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:24px}
+.opciones button{cursor:pointer;border:1px solid #8061ad;border-radius:14px;background:#322540;color:#fff;padding:13px 10px;font:inherit;min-height:48px}
+.opciones button:hover,.opciones button:focus-visible,.opciones button.activo,.opciones button[aria-pressed="true"]{background:#61457e;outline:2px solid #b99be8;outline-offset:1px}
+.nota{font-size:.85rem;color:#c5b8d5;margin-top:26px}
