@@ -91,14 +91,20 @@
     winter: [['winter','Invierno','Un conjunto abrigado en tonos azul noche.']],
     spring: [['spring','Primavera','Lavanda y detalles florales.']],
     party: [['party','Celebración','Un conjunto especial con brillo plateado.']],
-    sleep: [['sleep','Pijama','Ropa cómoda para descansar.']]
+    sleep: [['sleep','Pijama','Ropa cómoda para descansar.']],
+    christmas: [['christmas','Navidad','Conjunto festivo de Navidad.']],
+    newyear: [['newyear','Año Nuevo','Conjunto especial para Año Nuevo.']],
+    valentine: [['valentine','San Valentín','Conjunto especial para San Valentín.']],
+    patrias: [['patrias','Fiestas Patrias','Conjunto para celebrar las Fiestas Patrias.']]
   };
   function applyOutfit(key) {
+    if (!Object.values(outfits).flat().some(item => item[0] === key)) key = 'classic';
     state.outfit = key;
     ['lumi','lumiPreview'].forEach(id => { const el = $(id); if (el) { [...el.classList].filter(c => c.startsWith('look-')).forEach(c => el.classList.remove(c)); el.classList.add(`look-${key}`); } });
     const item = Object.values(outfits).flat().find(x => x[0] === key) || outfits.everyday[0];
     text('outfitName', item[1]); text('outfitDescription', item[2]); save();
     renderOutfits();
+    syncMagicCloset();
   }
   function renderOutfits() {
     const season = $('season'); const list = $('outfitList'); if (!season || !list) return;
@@ -108,6 +114,40 @@
       const b = document.createElement('button'); b.type = 'button'; b.className = `outfit-option${state.outfit===item[0]?' active':''}`;
       b.textContent = item[1]; b.addEventListener('click', () => applyOutfit(item[0])); list.appendChild(b);
     });
+  }
+
+  // Vestidor mágico: sincroniza sus botones con el armario original.
+  const magicToOutfit = {
+    primavera: 'spring', verano: 'summer', otono: 'autumn', invierno: 'winter',
+    pijama: 'sleep', navidad: 'christmas', 'ano-nuevo': 'newyear',
+    'san-valentin': 'valentine', 'fiestas-patrias': 'patrias'
+  };
+  const magicToSeason = {
+    spring:'spring', summer:'summer', autumn:'autumn', winter:'winter',
+    sleep:'sleep', christmas:'party', newyear:'party', valentine:'party', patrias:'party'
+  };
+  function syncMagicCloset() {
+    const chosen = Object.keys(magicToOutfit).find(k => magicToOutfit[k] === state.outfit);
+    document.querySelectorAll('#vestidor-magico [data-ropa]').forEach(button => {
+      button.setAttribute('aria-pressed', String(button.dataset.ropa === chosen));
+    });
+    const status = $('vestidor-estado');
+    if (status) status.textContent = chosen
+      ? `💜 Vestuario seleccionado: ${Object.values(outfits).flat().find(x => x[0] === state.outfit)?.[1] || ''}.`
+      : 'Elige una ocasión para cambiar mi conjunto.';
+  }
+  function initMagicCloset() {
+    const buttons = document.querySelectorAll('#vestidor-magico [data-ropa]');
+    buttons.forEach(button => button.addEventListener('click', () => {
+      const key = magicToOutfit[button.dataset.ropa];
+      if (!key) return;
+      const season = $('season');
+      if (season) season.value = magicToSeason[key];
+      applyOutfit(key);
+      // Compatibilidad con el script adicional del index.html existente.
+      try { localStorage.setItem('lumi.vestuario', button.dataset.ropa); } catch (_) {}
+    }));
+    syncMagicCloset();
   }
 
   function addCare(label, key, amount) {
@@ -197,10 +237,12 @@
     $('youtubeLoad')?.addEventListener('click',loadYoutube);
   }
   function start() {
-    initNavigation();bind();updateClock();setInterval(updateClock,30000);
+    initNavigation();bind();initMagicCloset();updateClock();setInterval(updateClock,30000);
     renderRooms();renderOutfits();renderLulu();renderCalendar();renderNotes();renderSpotify();
-    const season=$('season');if(season){const selected=state.outfit==='classic'?'everyday':state.outfit;season.value=outfits[selected]?selected:'everyday';renderOutfits();}
-    applyOutfit(state.outfit==='classic'?'everyday':state.outfit);
+    const season=$('season');if(season){const selected=state.outfit==='classic'?'everyday':state.outfit;season.value=magicToSeason[selected] || (outfits[selected]?selected:'everyday');renderOutfits();}
+    const savedMagic = (() => { try { return localStorage.getItem('lumi.vestuario'); } catch (_) { return null; } })();
+    const initialOutfit = state.outfit === 'everyday' ? 'classic' : state.outfit;
+    applyOutfit(initialOutfit === 'classic' && magicToOutfit[savedMagic] ? magicToOutfit[savedMagic] : initialOutfit);
     if($('eventDate'))$('eventDate').value=selectedDate;
     if(state.youtubeUrl&&$('youtubeUrl'))$('youtubeUrl').value=state.youtubeUrl;
     if(state.spotifyUrl&&$('spotifyUrl'))$('spotifyUrl').value=state.spotifyUrl;
