@@ -126,6 +126,29 @@
   try { anterior = localStorage.getItem(clave); } catch (_) {}
   if (anterior) elegir(anterior, false);
 })();
-</script>
+
+<script>
+/* CASA-LUMI 💜
+   Conexión del dormitorio
+   sin modificar app.js
+*/
+(() => {
+  const destino = "dormitorio.html";
+
+  document.addEventListener("click", (evento) => {
+    const boton = evento.target.closest(
+      '[data-room="dormitorio"],' +
+      '[data-room="bedroom"],' +
+      '[data-room="dormitory"]'
+    );
+
+    if (!boton) return;
+
+    evento.preventDefault();
+    evento.stopImmediatePropagation();
+
+    window.location.href = destino;
+  }, true);
+})();
 </body>
 </html>
