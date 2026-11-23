@@ -1,2 +1,318 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#160b25">
+<title>Dormitorio Mágico | Casa-Lumi</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ min-height:100vh;
+ font-family:Arial,sans-serif;
+ color:#f8edff;
+ background:radial-gradient(circle at top,#4c286d,#160b25 80%);
+}
+main{max-width:780px;margin:auto;padding:18px 12px 45px}
+h1,h2{text-align:center;color:#ebcaff}
+h1{font-size:28px}
+p{text-align:center;line-height:1.5}
+.panel{
+ background:#29183d;
+ border:2px solid #8556b2;
+ border-radius:22px;
+ padding:15px;
+ margin:16px 0;
+ box-shadow:0 0 22px #a765ee30;
+}
+.escenario{
+ position:relative;
+ height:370px;
+ overflow:hidden;
+ border:3px solid #b78be5;
+ border-radius:18px;
+ background:linear-gradient(#a47bdb 0%,#e0b4e8 70%,#a37bc1 70%);
+ transition:background .7s;
+}
+.escenario.noche{
+ background:linear-gradient(#18112f 0%,#392452 70%,#302044 70%);
+}
+.ventana{
+ position:absolute;
+ top:20px;right:25px;
+ width:105px;height:110px;
+ border:7px solid #624080;
+ border-radius:45px 45px 8px 8px;
+ background:linear-gradient(#8ad6ff,#f8d5f9);
+ display:grid;
+ place-items:center;
+ font-size:35px;
+}
+.noche .ventana{
+ background:linear-gradient(#080e36,#393477);
+}
+.cama{
+ position:absolute;
+ left:5%;bottom:30px;
+ width:55%;height:110px;
+ background:#7650a5;
+ border:6px solid #4d2b76;
+ border-radius:24px;
+ box-shadow:0 12px 0 #301947;
+}
+.almohada{
+ position:absolute;
+ left:10px;top:10px;
+ width:75px;height:35px;
+ background:#f3dfff;
+ border-radius:20px;
+}
+.manta{
+ position:absolute;
+ right:0;bottom:0;
+ width:72%;height:65px;
+ background:#b78be2;
+ border-radius:24px 10px 16px 10px;
+}
+.closet{
+ position:absolute;
+ right:5%;bottom:30px;
+ width:30%;height:175px;
+ border:5px solid #b68ce2;
+ border-radius:12px;
+ background:#573478;
+ display:grid;
+ place-items:center;
+ font-weight:bold;
+ text-align:center;
+}
+.closet:before{
+ content:"";
+ position:absolute;
+ left:50%;top:0;
+ width:3px;height:100%;
+ background:#b68ce2;
+}
+.lumi{
+ position:absolute;
+ left:42%;bottom:30px;
+ width:95px;height:145px;
+ display:grid;
+ place-items:center;
+ z-index:3;
+ transition:left 1.3s,bottom 1.3s;
+}
+.lumi img{
+ width:100%;height:100%;
+ object-fit:contain;
+ filter:drop-shadow(0 4px 8px #1c1028);
+}
+.provisional{
+ width:100%;
+ padding:12px 5px;
+ background:#472663;
+ border:2px dashed #c59bea;
+ border-radius:20px;
+ text-align:center;
+ font-size:13px;
+}
+.mensaje{
+ background:#41265c;
+ border-radius:15px;
+ padding:13px;
+ min-height:45px;
+}
+.botones{
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:10px;
+}
+button{
+ padding:13px 7px;
+ border:2px solid #aa7cda;
+ border-radius:13px;
+ background:#694292;
+ color:white;
+ font-size:14px;
+ cursor:pointer;
+}
+button:active{background:#9467bd}
+.estado{color:#dfbfff}
+a{color:#ebcaff}
+</style>
+</head>
+<body>
+<main>
+<h1>🌙 Mi Dormitorio Mágico</h1>
+<p>Bienvenidos a mi rincón de Casa-Lumi 💜</p>
+
+<section class="panel">
+<h2>🏠 Mi habitación</h2>
+<div id="escenario" class="escenario">
+ <div id="ventana" class="ventana">☀️</div>
+ <div class="cama">
+  <div class="almohada"></div>
+  <div class="manta"></div>
+ </div>
+ <div class="closet">Mi clóset</div>
+ <div id="lumi" class="lumi">
+  <div id="provisional" class="provisional">
+   💜<p>Lumi</p>
+   Imagen pendiente
+  </div>
+  <img id="imagenLumi" alt="Lumi" hidden>
+ </div>
+</div>
+<p id="mensaje" class="mensaje" aria-live="polite">
+ ¡Qué bonito estar en mi dormitorio! 💜
+</p>
+</section>
+
+<section class="panel">
+<h2>☀️ Ambiente</h2>
+<div class="botones">
+ <button onclick="ambiente('dia')">☀️ Día</button>
+ <button onclick="ambiente('noche')">🌙 Noche</button>
+</div>
+<p id="estadoAmbiente" class="estado"></p>
+</section>
+
+<section class="panel">
+<h2>🛏️ Mis actividades</h2>
+<div class="botones">
+ <button onclick="actividad('entrar')">🚪 Entrar</button>
+ <button onclick="actividad('closet')">👗 Ir al clóset</button>
+ <button onclick="actividad('cambiar')">👕 Cambiarme</button>
+ <button onclick="actividad('descansar')">💜 Descansar</button>
+ <button onclick="actividad('dormir')">😴 Dormir</button>
+ <button onclick="actividad('despertar')">☀️ Despertar</button>
+</div>
+</section>
+
+<section class="panel">
+<h2>👗 Mi vestuario</h2>
+<p id="ropaActual">Ropa actual: verano</p>
+<div class="botones">
+ <button onclick="ponerRopa('verano')">☀️ Verano</button>
+ <button onclick="ponerRopa('invierno')">❄️ Invierno</button>
+ <button onclick="ponerRopa('pijama-verano')">🌙 Pijama verano</button>
+ <button onclick="ponerRopa('pijama-invierno')">🌙 Pijama invierno</button>
+</div>
+<p class="estado">
+ Próximamente conectado al clóset inteligente.
+</p>
+</section>
+
+<section class="panel">
+<p><a href="index.html">🏠 Volver al inicio</a></p>
+</section>
+</main>
+
+<script>
+"use strict";
+
+const escenario=document.getElementById("escenario");
+const ventana=document.getElementById("ventana");
+const lumi=document.getElementById("lumi");
+const mensaje=document.getElementById("mensaje");
+const imagen=document.getElementById("imagenLumi");
+const provisional=document.getElementById("provisional");
+const ropaTexto=document.getElementById("ropaActual");
+
+let ropaActual="verano";
+
+const imagenesRopa={
+ "verano":"",
+ "invierno":"",
+ "pijama-verano":"",
+ "pijama-invierno":""
+};
+
+const posiciones={
+ entrar:{left:"42%",bottom:"30px"},
+ closet:{left:"65%",bottom:"30px"},
+ cambiar:{left:"60%",bottom:"30px"},
+ descansar:{left:"23%",bottom:"65px"},
+ dormir:{left:"20%",bottom:"75px"},
+ despertar:{left:"42%",bottom:"30px"}
+};
+
+const mensajes={
+ entrar:"¡Ya estoy en mi dormitorio! 💜",
+ closet:"Voy a mirar mi ropa.",
+ cambiar:"Voy a escoger qué ponerme.",
+ descansar:"Voy a descansar un ratito.",
+ dormir:"Buenas noches. Dulces sueños. 🌙",
+ despertar:"¡Buenos días! ☀️"
+};
+
+function mostrarImagen(){
+ const ruta=imagenesRopa[ropaActual];
+
+ if(!ruta){
+  imagen.hidden=true;
+  provisional.hidden=false;
+  return;
+ }
+
+ imagen.onload=function(){
+  imagen.hidden=false;
+  provisional.hidden=true;
+ };
+
+ imagen.onerror=function(){
+  imagen.hidden=true;
+  provisional.hidden=false;
+ };
+
+ imagen.src=ruta;
+}
+
+function ponerRopa(ropa){
+ ropaActual=ropa;
+ ropaTexto.textContent="Ropa actual: "+ropa;
+ mostrarImagen();
+ mensaje.textContent="Voy a usar mi conjunto de "+ropa+". 💜";
+}
+
+function ambiente(tipo){
+ const noche=tipo==="noche";
+ escenario.classList.toggle("noche",noche);
+ ventana.textContent=noche?"🌙":"☀️";
+ document.getElementById("estadoAmbiente").textContent=
+ noche?"Ambiente nocturno 🌙":"Ambiente de día ☀️";
+}
+
+function actividad(nombre){
+ const posicion=posiciones[nombre];
+ if(!posicion)return;
+
+ lumi.style.left=posicion.left;
+ lumi.style.bottom=posicion.bottom;
+ mensaje.textContent=mensajes[nombre];
+
+ if(nombre==="dormir"){
+  ambiente("noche");
+  ponerRopa("pijama-verano");
+  mensaje.textContent=mensajes[nombre];
+ }
+
+ if(nombre==="despertar"){
+  ambiente("dia");
+  ponerRopa("verano");
+  mensaje.textContent=mensajes[nombre];
+ }
+}
+
+function iniciar(){
+ const hora=new Date().getHours();
+ ambiente(hora>=20||hora<7?"noche":"dia");
+ mostrarImagen();
+}
+
+iniciar();
+</script>
+</body>
+</html>
