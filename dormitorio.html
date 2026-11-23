@@ -1,318 +1,242 @@
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#160b25">
-<title>Dormitorio Mágico | Casa-Lumi</title>
+<title>Mi Dormitorio | Casa-Lumi</title>
 <style>
 *{box-sizing:border-box}
-body{
- margin:0;
- min-height:100vh;
- font-family:Arial,sans-serif;
- color:#f8edff;
- background:radial-gradient(circle at top,#4c286d,#160b25 80%);
-}
-main{max-width:780px;margin:auto;padding:18px 12px 45px}
-h1,h2{text-align:center;color:#ebcaff}
-h1{font-size:28px}
-p{text-align:center;line-height:1.5}
-.panel{
- background:#29183d;
- border:2px solid #8556b2;
- border-radius:22px;
- padding:15px;
- margin:16px 0;
- box-shadow:0 0 22px #a765ee30;
-}
-.escenario{
- position:relative;
- height:370px;
- overflow:hidden;
- border:3px solid #b78be5;
- border-radius:18px;
- background:linear-gradient(#a47bdb 0%,#e0b4e8 70%,#a37bc1 70%);
- transition:background .7s;
-}
-.escenario.noche{
- background:linear-gradient(#18112f 0%,#392452 70%,#302044 70%);
-}
-.ventana{
- position:absolute;
- top:20px;right:25px;
- width:105px;height:110px;
- border:7px solid #624080;
- border-radius:45px 45px 8px 8px;
- background:linear-gradient(#8ad6ff,#f8d5f9);
- display:grid;
- place-items:center;
- font-size:35px;
-}
-.noche .ventana{
- background:linear-gradient(#080e36,#393477);
-}
-.cama{
- position:absolute;
- left:5%;bottom:30px;
- width:55%;height:110px;
- background:#7650a5;
- border:6px solid #4d2b76;
- border-radius:24px;
- box-shadow:0 12px 0 #301947;
-}
-.almohada{
- position:absolute;
- left:10px;top:10px;
- width:75px;height:35px;
- background:#f3dfff;
- border-radius:20px;
-}
-.manta{
- position:absolute;
- right:0;bottom:0;
- width:72%;height:65px;
- background:#b78be2;
- border-radius:24px 10px 16px 10px;
-}
-.closet{
- position:absolute;
- right:5%;bottom:30px;
- width:30%;height:175px;
- border:5px solid #b68ce2;
- border-radius:12px;
- background:#573478;
- display:grid;
- place-items:center;
- font-weight:bold;
- text-align:center;
-}
-.closet:before{
- content:"";
- position:absolute;
- left:50%;top:0;
- width:3px;height:100%;
- background:#b68ce2;
-}
-.lumi{
- position:absolute;
- left:42%;bottom:30px;
- width:95px;height:145px;
- display:grid;
- place-items:center;
- z-index:3;
- transition:left 1.3s,bottom 1.3s;
-}
-.lumi img{
- width:100%;height:100%;
- object-fit:contain;
- filter:drop-shadow(0 4px 8px #1c1028);
-}
-.provisional{
- width:100%;
- padding:12px 5px;
- background:#472663;
- border:2px dashed #c59bea;
- border-radius:20px;
- text-align:center;
- font-size:13px;
-}
-.mensaje{
- background:#41265c;
- border-radius:15px;
- padding:13px;
- min-height:45px;
-}
-.botones{
- display:grid;
- grid-template-columns:repeat(2,minmax(0,1fr));
- gap:10px;
-}
-button{
- padding:13px 7px;
- border:2px solid #aa7cda;
- border-radius:13px;
- background:#694292;
- color:white;
- font-size:14px;
- cursor:pointer;
-}
-button:active{background:#9467bd}
-.estado{color:#dfbfff}
-a{color:#ebcaff}
+body{margin:0;min-height:100vh;background:radial-gradient(circle at top,#48245f,#160b25 80%);color:#fff0ff;font-family:Arial,sans-serif}
+main{max-width:680px;margin:auto;padding:18px 12px 45px}
+.volver{display:inline-block;color:#eac7ff;text-decoration:none;margin-bottom:18px}
+h1,h2,.subtitulo{text-align:center}
+h1{color:#f1caff;margin-bottom:8px}
+.subtitulo{color:#e2b5ff;margin-bottom:24px;line-height:1.6}
+.casilla{background:#29163d;border:3px solid #c77cff;border-radius:24px;padding:12px;margin-bottom:20px;box-shadow:0 0 18px #b76cff55}
+.casilla h2{font-size:20px;color:#f1caff}
+.casilla img{display:block;width:100%;height:auto;border-radius:14px}
+.oculto{display:none!important}
+.aviso{text-align:center;line-height:1.6;padding:20px;color:#ead0ff}
+#mensaje{text-align:center;line-height:1.6;color:#ead0ff}
+button{display:block;margin:20px auto;padding:13px 22px;border:2px solid #e4a9ff;border-radius:18px;background:#643481;color:white;font-size:16px;cursor:pointer}
+button:disabled{opacity:.5;cursor:not-allowed}
+.estado-contenido{padding:12px;border-radius:18px;background:linear-gradient(135deg,#38204f,#20112f)}
+.estado-datos{display:grid;gap:12px}
+.estado-linea{background:#4a2865;border:1px solid #a96de0;border-radius:14px;padding:13px;line-height:1.6}
+.estado-linea strong{color:#f2c8ff}
+.estado-mensaje{margin-top:16px;padding:16px;text-align:center;line-height:1.7;background:#62387b;border:2px solid #d49aff;border-radius:20px;color:white}
+.estado-decoracion{text-align:center;color:#d9aaff;padding:12px}
+.estado-retrato{margin-bottom:14px}
+.estado-retrato img{max-width:100%}
+.estado-retrato .aviso{padding:12px}
+@media(min-width:480px){.estado-datos{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <main>
-<h1>🌙 Mi Dormitorio Mágico</h1>
-<p>Bienvenidos a mi rincón de Casa-Lumi 💜</p>
-
-<section class="panel">
-<h2>🏠 Mi habitación</h2>
-<div id="escenario" class="escenario">
- <div id="ventana" class="ventana">☀️</div>
- <div class="cama">
-  <div class="almohada"></div>
-  <div class="manta"></div>
- </div>
- <div class="closet">Mi clóset</div>
- <div id="lumi" class="lumi">
-  <div id="provisional" class="provisional">
-   💜<p>Lumi</p>
-   Imagen pendiente
-  </div>
-  <img id="imagenLumi" alt="Lumi" hidden>
- </div>
-</div>
-<p id="mensaje" class="mensaje" aria-live="polite">
- ¡Qué bonito estar en mi dormitorio! 💜
-</p>
+<a class="volver" href="index.html">← Volver a Casa-Lumi</a>
+<h1>💜 Mi Dormitorio 💜</h1>
+<p class="subtitulo" id="temporada">Preparando mi dormitorio...</p>
+<!-- CUADRO 1 -->
+<section class="casilla">
+<h2>🛏️ Mi ambiente</h2>
+<img id="ambiente" class="oculto" alt="Dormitorio de Lumi">
+<p class="aviso oculto" id="aviso-ambiente"></p>
 </section>
-
-<section class="panel">
-<h2>☀️ Ambiente</h2>
-<div class="botones">
- <button onclick="ambiente('dia')">☀️ Día</button>
- <button onclick="ambiente('noche')">🌙 Noche</button>
-</div>
-<p id="estadoAmbiente" class="estado"></p>
+<!-- CUADRO 2 -->
+<section class="casilla">
+<h2>✨ ¿Qué estoy haciendo?</h2>
+<img id="actividad" class="oculto" alt="Actividad de Lumi en su dormitorio">
+<p class="aviso oculto" id="aviso-actividad"></p>
 </section>
-
-<section class="panel">
-<h2>🛏️ Mis actividades</h2>
-<div class="botones">
- <button onclick="actividad('entrar')">🚪 Entrar</button>
- <button onclick="actividad('closet')">👗 Ir al clóset</button>
- <button onclick="actividad('cambiar')">👕 Cambiarme</button>
- <button onclick="actividad('descansar')">💜 Descansar</button>
- <button onclick="actividad('dormir')">😴 Dormir</button>
- <button onclick="actividad('despertar')">☀️ Despertar</button>
+<!-- CUADRO 3 -->
+<section class="casilla">
+<h2>♡ Mi estado actual ♡</h2>
+<div class="estado-contenido">
+<div class="estado-retrato">
+<img id="estado" class="oculto" alt="Estado actual de Lumi">
+<p class="aviso oculto" id="aviso-estado"></p>
+</div>
+<div class="estado-datos">
+<div class="estado-linea"><strong>🌸 Vestuario:</strong> <span id="vestuario-actual">Preparando ropa...</span></div>
+<div class="estado-linea"><strong>😊 Emoción:</strong> <span id="emocion-actual">Tranquila</span></div>
+<div class="estado-linea"><strong>✨ Actividad:</strong> <span id="actividad-actual">Preparando actividad...</span></div>
+</div>
+<div class="estado-mensaje" id="mensaje-estado">💜 Bienvenida a mi dormitorio.</div>
+<div class="estado-decoracion">✨ 🌸 💜 🌙 ✨</div>
 </div>
 </section>
-
-<section class="panel">
-<h2>👗 Mi vestuario</h2>
-<p id="ropaActual">Ropa actual: verano</p>
-<div class="botones">
- <button onclick="ponerRopa('verano')">☀️ Verano</button>
- <button onclick="ponerRopa('invierno')">❄️ Invierno</button>
- <button onclick="ponerRopa('pijama-verano')">🌙 Pijama verano</button>
- <button onclick="ponerRopa('pijama-invierno')">🌙 Pijama invierno</button>
-</div>
-<p class="estado">
- Próximamente conectado al clóset inteligente.
-</p>
-</section>
-
-<section class="panel">
-<p><a href="index.html">🏠 Volver al inicio</a></p>
-</section>
+<p id="mensaje" aria-live="polite"></p>
+<button id="otra-actividad" type="button">✨ Otra actividad</button>
 </main>
-
 <script>
 "use strict";
-
-const escenario=document.getElementById("escenario");
-const ventana=document.getElementById("ventana");
-const lumi=document.getElementById("lumi");
-const mensaje=document.getElementById("mensaje");
-const imagen=document.getElementById("imagenLumi");
-const provisional=document.getElementById("provisional");
-const ropaTexto=document.getElementById("ropaActual");
-
-let ropaActual="verano";
-
-const imagenesRopa={
- "verano":"",
- "invierno":"",
- "pijama-verano":"",
- "pijama-invierno":""
+/* CASA-LUMI: DORMITORIO AUTOMÁTICO */
+const BASE="assets/";
+const HORARIOS={
+ dia:{nombre:"☀️ De día"},
+ tarde:{nombre:"🌅 De tarde"},
+ noche:{nombre:"🌙 De noche"}
 };
-
-const posiciones={
- entrar:{left:"42%",bottom:"30px"},
- closet:{left:"65%",bottom:"30px"},
- cambiar:{left:"60%",bottom:"30px"},
- descansar:{left:"23%",bottom:"65px"},
- dormir:{left:"20%",bottom:"75px"},
- despertar:{left:"42%",bottom:"30px"}
+const VESTUARIOS={
+ primavera:{nombre:"Primavera",icono:"🌸"},
+ verano:{nombre:"Verano",icono:"☀️"},
+ otono:{nombre:"Otoño",icono:"🍂"},
+ invierno:{nombre:"Invierno",icono:"❄️"},
+ navidad:{nombre:"Navidad",icono:"🎄"},
+ anoNuevo:{nombre:"Año Nuevo",icono:"🎆"},
+ sanValentin:{nombre:"San Valentín",icono:"💕"},
+ fiestasPatrias:{nombre:"Fiestas Patrias",icono:"🇨🇱"},
+ pijamaVerano:{nombre:"Pijama de verano",icono:"🌙"},
+ pijamaInvierno:{nombre:"Pijama de invierno",icono:"🌙"}
 };
-
-const mensajes={
- entrar:"¡Ya estoy en mi dormitorio! 💜",
- closet:"Voy a mirar mi ropa.",
- cambiar:"Voy a escoger qué ponerme.",
- descansar:"Voy a descansar un ratito.",
- dormir:"Buenas noches. Dulces sueños. 🌙",
- despertar:"¡Buenos días! ☀️"
+/* Registrar aquí los nombres exactos de los fondos una vez subidos.
+   No se reutilizan imágenes de la sala como si fueran del dormitorio. */
+const AMBIENTES={dia:null,tarde:null,noche:null};
+/* Las actividades son independientes del horario; el horario determina
+   el ambiente y puede priorizar acciones apropiadas para cada momento. */
+const ACTIVIDADES=[
+ {id:"entrando",nombre:"Entrando al dormitorio",emocion:"Contenta",mensaje:"¡Ya llegué a mi dormitorio! 💜"},
+ {id:"ordenando",nombre:"Ordenando mi cama",emocion:"Animada",mensaje:"Voy a dejar mi cama bien ordenadita ✨"},
+ {id:"closet",nombre:"Organizando mi clóset",emocion:"Concentrada",mensaje:"Cada prenda en su lugar 👗"},
+ {id:"ropa",nombre:"Eligiendo mi ropa",emocion:"Pensativa",mensaje:"¿Qué conjunto me corresponde hoy? 💜"},
+ {id:"cambiando",nombre:"Preparándome para cambiarme",emocion:"Tranquila",mensaje:"Voy a ponerme mi ropa del día ✨"},
+ {id:"leyendo",nombre:"Leyendo en mi cama",emocion:"Tranquila",mensaje:"Un capítulo para disfrutar con calma 📖"},
+ {id:"descansando",nombre:"Descansando en mi cama",emocion:"Relajada",mensaje:"Un ratito de descanso 💜"},
+ {id:"pijama",nombre:"Preparando mi pijama",emocion:"Contenta",mensaje:"Hora de preparar mi pijama 🌙"},
+ {id:"durmiendo",nombre:"Durmiendo",emocion:"Soñolienta",mensaje:"Buenas noches, dulces sueños 🌙"},
+ {id:"despertando",nombre:"Despertando",emocion:"Feliz",mensaje:"¡Buenos días! ☀️"}
+];
+/* Cada combinación ropa/horario/actividad necesita una imagen oficial.
+   Ejemplo de estructura, sin inventar rutas:
+   verano:{dia:{leyendo:"nombre-real.png"}}
+*/
+const IMAGENES_VESTUARIO={
+ primavera:{},verano:{},otono:{},invierno:{},
+ navidad:{},anoNuevo:{},sanValentin:{},fiestasPatrias:{},
+ pijamaVerano:{},pijamaInvierno:{}
 };
-
-function mostrarImagen(){
- const ruta=imagenesRopa[ropaActual];
-
- if(!ruta){
-  imagen.hidden=true;
-  provisional.hidden=false;
+const IMAGENES_ESTADO={};
+let escenaActual=null;
+let periodoActual="";
+let temporadaActual="";
+let vestuarioActual="";
+let ultimoCambio=0;
+const MINUTOS_CAMBIO=15;
+function obtenerTemporada(fecha){
+ const mes=fecha.getMonth()+1;
+ if(mes===12||mes<=2)return "verano";
+ if(mes>=3&&mes<=5)return "otono";
+ if(mes>=6&&mes<=8)return "invierno";
+ return "primavera";
+}
+function obtenerPeriodo(fecha){
+ const hora=fecha.getHours();
+ if(hora>=6&&hora<12)return "dia";
+ if(hora>=12&&hora<20)return "tarde";
+ return "noche";
+}
+function obtenerVestuario(fecha){
+ const dia=fecha.getDate();
+ const mes=fecha.getMonth()+1;
+ const temporada=obtenerTemporada(fecha);
+ const periodo=obtenerPeriodo(fecha);
+ if(mes===12&&dia===25)return "navidad";
+ if((mes===12&&dia===31)||(mes===1&&dia===1))return "anoNuevo";
+ if(mes===2&&dia===14)return "sanValentin";
+ if(mes===9&&dia>=18&&dia<=19)return "fiestasPatrias";
+ if(periodo==="noche"){
+  return (temporada==="verano"||temporada==="primavera")?"pijamaVerano":"pijamaInvierno";
+ }
+ return temporada;
+}
+function mostrarImagen(id,archivo,avisoTexto){
+ const imagen=document.getElementById(id);
+ const aviso=document.getElementById("aviso-"+id);
+ imagen.onload=null;
+ imagen.onerror=null;
+ imagen.classList.add("oculto");
+ if(!archivo){
+  imagen.removeAttribute("src");
+  aviso.textContent=avisoTexto;
+  aviso.classList.remove("oculto");
   return;
  }
-
- imagen.onload=function(){
-  imagen.hidden=false;
-  provisional.hidden=true;
+ aviso.classList.add("oculto");
+ imagen.onload=()=>{imagen.classList.remove("oculto");aviso.classList.add("oculto")};
+ imagen.onerror=()=>{
+  imagen.classList.add("oculto");
+  aviso.textContent="Imagen pendiente: "+archivo;
+  aviso.classList.remove("oculto");
  };
-
- imagen.onerror=function(){
-  imagen.hidden=true;
-  provisional.hidden=false;
- };
-
- imagen.src=ruta;
+ imagen.src=BASE+archivo;
 }
-
-function ponerRopa(ropa){
- ropaActual=ropa;
- ropaTexto.textContent="Ropa actual: "+ropa;
- mostrarImagen();
- mensaje.textContent="Voy a usar mi conjunto de "+ropa+". 💜";
+function obtenerImagenActividad(){
+ if(!escenaActual)return null;
+ const ropa=IMAGENES_VESTUARIO[vestuarioActual];
+ return (ropa&&ropa[periodoActual]&&ropa[periodoActual][escenaActual.id])||null;
 }
-
-function ambiente(tipo){
- const noche=tipo==="noche";
- escenario.classList.toggle("noche",noche);
- ventana.textContent=noche?"🌙":"☀️";
- document.getElementById("estadoAmbiente").textContent=
- noche?"Ambiente nocturno 🌙":"Ambiente de día ☀️";
+function actualizarTitulo(){
+ const temporada=VESTUARIOS[temporadaActual];
+ const horario=HORARIOS[periodoActual];
+ const ropa=VESTUARIOS[vestuarioActual];
+ document.getElementById("temporada").textContent=
+  temporada.icono+" "+temporada.nombre+" · "+horario.nombre+" · "+ropa.icono+" "+ropa.nombre;
 }
-
-function actividad(nombre){
- const posicion=posiciones[nombre];
- if(!posicion)return;
-
- lumi.style.left=posicion.left;
- lumi.style.bottom=posicion.bottom;
- mensaje.textContent=mensajes[nombre];
-
- if(nombre==="dormir"){
-  ambiente("noche");
-  ponerRopa("pijama-verano");
-  mensaje.textContent=mensajes[nombre];
+function mostrarEstado(){
+ if(!escenaActual)return;
+ const ropa=VESTUARIOS[vestuarioActual];
+ document.getElementById("vestuario-actual").textContent=ropa.icono+" "+ropa.nombre;
+ document.getElementById("emocion-actual").textContent=escenaActual.emocion;
+ document.getElementById("actividad-actual").textContent=escenaActual.nombre;
+ document.getElementById("mensaje-estado").textContent="💜 "+escenaActual.mensaje;
+ const imagen=IMAGENES_ESTADO[vestuarioActual]?.[periodoActual]?.[escenaActual.id]||null;
+ mostrarImagen("estado",imagen,"💜 Lumi está "+escenaActual.nombre.toLowerCase()+".");
+}
+function mostrarEscena(){
+ if(!escenaActual)return;
+ mostrarImagen("ambiente",AMBIENTES[periodoActual],"El ambiente del dormitorio para este horario aún no está registrado.");
+ mostrarImagen("actividad",obtenerImagenActividad(),"Actividad actual: "+escenaActual.nombre+". Imagen pendiente para "+VESTUARIOS[vestuarioActual].nombre+".");
+ mostrarEstado();
+ document.getElementById("mensaje").textContent=escenaActual.mensaje;
+}
+function elegirActividad(){
+ const ahora=new Date();
+ temporadaActual=obtenerTemporada(ahora);
+ periodoActual=obtenerPeriodo(ahora);
+ vestuarioActual=obtenerVestuario(ahora);
+ actualizarTitulo();
+ /* Evitar escoger "durmiendo" durante el día o "despertando" de noche. */
+ const disponibles=ACTIVIDADES.filter(a=>{
+  if(a.id==="durmiendo")return periodoActual==="noche";
+  if(a.id==="despertando")return periodoActual==="dia";
+  if(a.id==="pijama")return periodoActual==="noche";
+  return true;
+ });
+ const boton=document.getElementById("otra-actividad");
+ boton.disabled=disponibles.length===0;
+ if(!disponibles.length){escenaActual=null;return}
+ let opciones=disponibles.filter(a=>!escenaActual||a.id!==escenaActual.id);
+ if(!opciones.length)opciones=disponibles;
+ escenaActual=opciones[Math.floor(Math.random()*opciones.length)];
+ ultimoCambio=Date.now();
+ mostrarEscena();
+}
+function revisarHorario(){
+ const ahora=new Date();
+ if(obtenerPeriodo(ahora)!==periodoActual||
+    obtenerTemporada(ahora)!==temporadaActual||
+    obtenerVestuario(ahora)!==vestuarioActual||
+    Date.now()-ultimoCambio>=MINUTOS_CAMBIO*60000){
+  elegirActividad();
  }
-
- if(nombre==="despertar"){
-  ambiente("dia");
-  ponerRopa("verano");
-  mensaje.textContent=mensajes[nombre];
- }
 }
-
-function iniciar(){
- const hora=new Date().getHours();
- ambiente(hora>=20||hora<7?"noche":"dia");
- mostrarImagen();
-}
-
-iniciar();
+document.getElementById("otra-actividad").addEventListener("click",elegirActividad);
+elegirActividad();
+setInterval(revisarHorario,60000);
+document.addEventListener("visibilitychange",()=>{if(!document.hidden)revisarHorario()});
 </script>
 </body>
 </html>
